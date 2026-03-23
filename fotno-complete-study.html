@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسة جدوى FOTNO - FOTNO Feasibility Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #72c1ce;
+            --primary-dark: #5aa8b5;
+            --secondary: #d4a574;
+            --accent: #f5f5f5;
+            --bg: #fafafa;
+            --dark: #1a1a1a;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0e0e0;
+            --success: #4caf50;
+            --warning: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html[lang="ar"] {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(114, 193, 206, 0.3);
+            transition: all 0.3s;
+        }
+
+        .lang-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(114, 193, 206, 0.4);
+        }
+
+        .content {
+            padding: 60px 50px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: attr(data-num);
+            position: absolute;
+            left: -35px;
+            font-size: 0.6em;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(114, 193, 206, 0.1) 0%, rgba(212, 165, 116, 0.08) 100%);
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #fafafa 0%, #f3f3f3 100%);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(114, 193, 206, 0.15);
+            border-color: var(--primary);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        .card-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.95em;
+            color: var(--text-light);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 16px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95em;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 12px 28px rgba(114, 193, 206, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(114, 193, 206, 0.25);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        .pricing-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .pricing-price-period {
+            font-size: 0.85em;
+            color: var(--text-light);
+        }
+
+        .pricing-storage {
+            font-size: 0.95em;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .features-list li {
+            font-size: 0.9em;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 35px;
+            width: 2px;
+            height: calc(100% + 25px);
+            background: var(--border);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            border: 3px solid white;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            margin-top: 2px;
+            box-shadow: 0 0 0 3px rgba(114, 193, 206, 0.2);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(250, 250, 250, 1) 0%, rgba(243, 243, 243, 1) 100%);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .timeline-content strong {
+            color: var(--primary);
+            font-size: 1.05em;
+        }
+
+        .stat-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .stat {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(114, 193, 206, 0.08) 0%, rgba(212, 165, 116, 0.08) 100%);
+            border-radius: 12px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 25px 0;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .key-metric {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            .stat-box {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .lang-toggle {
+                position: fixed;
+                right: 10px;
+                top: 10px;
+            }
+
+            .section-title::before {
+                display: none;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>FOTNO</h1>
+            <p class="ar-text">دراسة جدوى شاملة للأعمال</p>
+            <p class="en-text hidden">Comprehensive Business Feasibility Study</p>
+        </div>
+
+        <!-- Language Toggle -->
+        <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English / العربية</button>
+
+        <div class="content">
+            <!-- Section 1: Executive Overview -->
+            <section>
+                <h2 class="section-title" data-num="01">
+                    <span class="ar-text">نظرة عامة على الفرصة</span>
+                    <span class="en-text hidden">Executive Overview</span>
+                </h2>
+
+                <p class="ar-text">
+                    FOTNO هي منصة SaaS موجهة للمصورين المحترفين حول العالم. تحل المشكلة الأساسية التي يواجهها كل مصور: 
+                    كيفية تنظيم وتسليم آلاف الصور للعملاء بسرعة وكفاءة.
+                </p>
+                <p class="en-text hidden">
+                    FOTNO is a SaaS platform targeting professional photographers worldwide. It solves the core problem every photographer faces:
+                    how to organize and deliver thousands of photos to clients quickly and efficiently.
+                </p>
+
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-title ar-text">📊 حجم السوق</div>
+                        <div class="card-title en-text hidden">📊 Market Size</div>
+                        <div class="card-value">350K+</div>
+                        <div class="card-desc ar-text">مصور حول العالم</div>
+                        <div class="card-desc en-text hidden">Photographers worldwide</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title ar-text">💰 إنفاق العملاء</div>
+                        <div class="card-title en-text hidden">💰 Customer Spend</div>
+                        <div class="card-value">$9-49</div>
+                        <div class="card-desc ar-text">شهريًا على الأدوات</div>
+                        <div class="card-desc en-text hidden">Monthly on tools</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title ar-text">⏱️ الوقت المحفوظ</div>
+                        <div class="card-title en-text hidden">⏱️ Time Saved</div>
+                        <div class="card-value">20+ ساعة</div>
+                        <div class="card-desc ar-text">لكل حفل صور</div>
+                        <div class="card-desc en-text hidden">Per photo event</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Product Features -->
+            <section>
+                <h2 class="section-title" data-num="02">
+                    <span class="ar-text">المميزات والخطط</span>
+                    <span class="en-text hidden">Features & Plans</span>
+                </h2>
+
+                <p class="ar-text">FOTNO تقدم خطط متعددة لتناسب جميع أنواع المصورين، من المبتدئين إلى استوديوهات احترافية:</p>
+                <p class="en-text hidden">FOTNO offers multiple plans to suit all types of photographers, from beginners to professional studios:</p>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-name ar-text">مبتدئ</div>
+                        <div class="pricing-name en-text hidden">Starter</div>
+                        <div class="pricing-price">$9</div>
+                        <div class="pricing-price-period ar-text">/شهر</div>
+                        <div class="pricing-price-period en-text hidden">/month</div>
+                        <div class="pricing-storage ar-text">20 GB تخزين</div>
+                        <div class="pricing-storage en-text hidden">20 GB storage</div>
+                    </div>
+
+                    <div class="pricing-card popular">
+                        <div class="popular-badge ar-text">الأكثر طلبًا</div>
+                        <div class="popular-badge en-text hidden">Most Popular</div>
+                        <div class="pricing-name ar-text">احترافي</div>
+                        <div class="pricing-name en-text hidden">Professional</div>
+                        <div class="pricing-price">$19</div>
+                        <div class="pricing-price-period ar-text">/شهر</div>
+                        <div class="pricing-price-period en-text hidden">/month</div>
+                        <div class="pricing-storage ar-text">100 GB تخزين</div>
+                        <div class="pricing-storage en-text hidden">100 GB storage</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-name ar-text">أعمال</div>
+                        <div class="pricing-name en-text hidden">Business</div>
+                        <div class="pricing-price">$35</div>
+                        <div class="pricing-price-period ar-text">/شهر</div>
+                        <div class="pricing-price-period en-text hidden">/month</div>
+                        <div class="pricing-storage ar-text">500 GB تخزين</div>
+                        <div class="pricing-storage en-text hidden">500 GB storage</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-name ar-text">غير محدود</div>
+                        <div class="pricing-name en-text hidden">Unlimited</div>
+                        <div class="pricing-price">$49</div>
+                        <div class="pricing-price-period ar-text">/شهر</div>
+                        <div class="pricing-price-period en-text hidden">/month</div>
+                        <div class="pricing-storage ar-text">تخزين غير محدود</div>
+                        <div class="pricing-storage en-text hidden">Unlimited storage</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong class="ar-text">المميزات في جميع الخطط:</strong>
+                    <strong class="en-text hidden">Features in All Plans:</strong>
+                    <ul class="features-list">
+                        <li class="ar-text">معارض غير محدودة</li>
+                        <li class="en-text hidden">Unlimited galleries</li>
+                        <li class="ar-text">عملاء غير محدودين</li>
+                        <li class="en-text hidden">Unlimited clients</li>
+                        <li class="ar-text">تعليقات مدعومة بـ AI</li>
+                        <li class="en-text hidden">AI-powered captions</li>
+                        <li class="ar-text">المفضلة واختيارات العميل</li>
+                        <li class="en-text hidden">Client favorites & selections</li>
+                        <li class="ar-text">تتبع التنزيلات والإحصائيات</li>
+                        <li class="en-text hidden">Download tracking & analytics</li>
+                        <li class="ar-text">معارض محمية بكلمة مرور</li>
+                        <li class="en-text hidden">Password-protected galleries</li>
+                        <li class="ar-text">رابط معرض مخصص</li>
+                        <li class="en-text hidden">Custom gallery slugs</li>
+                        <li class="ar-text">تحميل جماعي مع إعادة محاولة تلقائية</li>
+                        <li class="en-text hidden">Bulk upload with auto-retry</li>
+                        <li class="ar-text">استيراد Google Drive و Google Photos</li>
+                        <li class="en-text hidden">Google Drive & Google Photos import</li>
+                        <li class="ar-text">عرض شرائح وتبادل اجتماعي</li>
+                        <li class="en-text hidden">Slideshow & social sharing</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: Revenue Model -->
+            <section>
+                <h2 class="section-title" data-num="03">
+                    <span class="ar-text">نموذج الإيرادات</span>
+                    <span class="en-text hidden">Revenue Model</span>
+                </h2>
+
+                <p class="ar-text">
+                    FOTNO تستخدم نموذج الاشتراك الشهري المتكرر (SaaS). العملاء يدفعون مبلغًا ثابتًا كل شهر 
+                    للوصول إلى المنصة وجميع الميزات.
+                </p>
+                <p class="en-text hidden">
+                    FOTNO uses a monthly recurring subscription model (SaaS). Customers pay a fixed monthly amount
+                    to access the platform and all features.
+                </p>
+
+                <div class="stat-box">
+                    <div class="stat">
+                        <div class="stat-label ar-text">متوسط السعر المتوقع</div>
+                        <div class="stat-label en-text hidden">Expected Average Price</div>
+                        <div class="stat-value">$19</div>
+                        <p class="ar-text">بناءً على خليط من الخطط المختلفة</p>
+                        <p class="en-text hidden">Based on mix of different plans</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label ar-text">هيكل الإيرادات</div>
+                        <div class="stat-label en-text hidden">Revenue Structure</div>
+                        <div class="stat-value">100%</div>
+                        <p class="ar-text">من الاشتراكات المتكررة (MRR)</p>
+                        <p class="en-text hidden">From recurring subscriptions (MRR)</p>
+                    </div>
+                </div>
+
+                <div class="key-metric">
+                    <span class="ar-text">✓ لا توجد عمولات أو رسوم إضافية - سعر واضح وعادل</span>
+                    <span class="en-text hidden">✓ No commissions or hidden fees - clear and fair pricing</span>
+                </div>
+            </section>
+
+            <!-- Section 4: Target Market Analysis -->
+            <section>
+                <h2 class="section-title" data-num="04">
+                    <span class="ar-text">تحليل السوق المستهدفة</span>
+                    <span class="en-text hidden">Target Market Analysis</span>
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">المنطقة الجغرافية</th>
+                            <th class="en-text hidden">Geographic Region</th>
+                            <th class="ar-text">عدد المصورين</th>
+                            <th class="en-text hidden">Photographer Count</th>
+                            <th class="ar-text">متوسط السعر</th>
+                            <th class="en-text hidden">Average Price</th>
+                            <th class="ar-text">إمكانية الاختراق</th>
+                            <th class="en-text hidden">Penetration Potential</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">أمريكا الشمالية</td>
+                            <td class="en-text hidden">North America</td>
+                            <td>150,000+</td>
+                            <td class="ar-text">$25-49</td>
+                            <td class="en-text hidden">$25-49</td>
+                            <td class="ar-text">عالية جدًا</td>
+                            <td class="en-text hidden">Very High</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">أوروبا</td>
+                            <td class="en-text hidden">Europe</td>
+                            <td>100,000+</td>
+                            <td class="ar-text">$18-35</td>
+                            <td class="en-text hidden">$18-35</td>
+                            <td class="ar-text">عالية</td>
+                            <td class="en-text hidden">High</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">آسيا والمحيط الهادئ</td>
+                            <td class="en-text hidden">Asia-Pacific</td>
+                            <td>80,000+</td>
+                            <td class="ar-text">$12-25</td>
+                            <td class="en-text hidden">$12-25</td>
+                            <td class="ar-text">عالية</td>
+                            <td class="en-text hidden">High</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشرق الأوسط</td>
+                            <td class="en-text hidden">Middle East</td>
+                            <td>30,000+</td>
+                            <td class="ar-text">$15-30</td>
+                            <td class="en-text hidden">$15-30</td>
+                            <td class="ar-text">متوسطة</td>
+                            <td class="en-text hidden">Medium</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">إفريقيا و MENA</td>
+                            <td class="en-text hidden">Africa & MENA</td>
+                            <td>50,000+</td>
+                            <td class="ar-text">$9-19</td>
+                            <td class="en-text hidden">$9-19</td>
+                            <td class="ar-text">متوسطة-عالية</td>
+                            <td class="en-text hidden">Medium-High</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <strong class="ar-text">حجم السوق الإجمالي:</strong>
+                    <strong class="en-text hidden">Total Addressable Market:</strong>
+                    <p class="ar-text">
+                        410,000+ مصور احترافي حول العالم. حتى لو وصلنا إلى 1% فقط = 4,100 عميل بمتوسط $19/شهر = 
+                        <strong>$78,000 شهريًا = $936,000 سنويًا</strong>
+                    </p>
+                    <p class="en-text hidden">
+                        410,000+ professional photographers worldwide. Even if we reach just 1% = 4,100 customers at average $19/month = 
+                        <strong>$78,000 monthly = $936,000 annually</strong>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 5: Customer Acquisition Strategy -->
+            <section>
+                <h2 class="section-title" data-num="05">
+                    <span class="ar-text">استراتيجية اكتساب العملاء</span>
+                    <span class="en-text hidden">Customer Acquisition Strategy</span>
+                </h2>
+
+                <div class="subtitle ar-text">المرحلة الأولى (الأشهر 1-3): الوصول المباشر والعضوي</div>
+                <div class="subtitle en-text hidden">Phase 1 (Months 1-3): Direct & Organic Reach</div>
+                <ul>
+                    <li class="ar-text"><strong>البريد الإلكتروني المباشر:</strong> الوصول إلى 100+ مصور معروفين شخصيًا</li>
+                    <li class="en-text hidden"><strong>Direct Email:</strong> Reach 100+ known photographers personally</li>
+                    <li class="ar-text"><strong>Reddit و Forums:</strong> المشاركة في r/photography و r/weddingphotography و غيرها</li>
+                    <li class="en-text hidden"><strong>Reddit & Forums:</strong> Engage in r/photography, r/weddingphotography, etc.</li>
+                    <li class="ar-text"><strong>Product Hunt:</strong> إطلاق في الأسبوع الثالث للحصول على تغطية إعلامية</li>
+                    <li class="en-text hidden"><strong>Product Hunt:</strong> Launch in week 3 for media coverage</li>
+                    <li class="ar-text"><strong>Twitter/X:</strong> الانخراط مع حسابات تصوير وهاشتاجات</li>
+                    <li class="en-text hidden"><strong>Twitter/X:</strong> Engage with photography accounts and hashtags</li>
+                </ul>
+
+                <div class="subtitle ar-text">تكلفة الاستحواذ (CAC)</div>
+                <div class="subtitle en-text hidden">Customer Acquisition Cost (CAC)</div>
+                <p class="ar-text">
+                    الطريقة الأساسية: <strong>عضويًا (من الكلام الشفهي والتسويق الرقمي)</strong><br>
+                    CAC المتوقع: <strong>$50-150</strong> (عندما نضيف إعلانات مدفوعة لاحقًا)
+                </p>
+                <p class="en-text hidden">
+                    Primary Method: <strong>Organic (word-of-mouth & digital marketing)</strong><br>
+                    Expected CAC: <strong>$50-150</strong> (when adding paid ads later)
+                </p>
+            </section>
+
+            <!-- Section 6: Revenue Projections -->
+            <section>
+                <h2 class="section-title" data-num="06">
+                    <span class="ar-text">توقعات الإيرادات</span>
+                    <span class="en-text hidden">Revenue Projections</span>
+                </h2>
+
+                <p class="ar-text">
+                    بناءً على معدل نمو محافظ (20-30% شهريًا في الأشهر الأولى، متناقصًا مع النمو):
+                </p>
+                <p class="en-text hidden">
+                    Based on conservative growth rate (20-30% monthly in early months, declining with scale):
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">الفترة</th>
+                            <th class="en-text hidden">Period</th>
+                            <th class="ar-text">عدد العملاء</th>
+                            <th class="en-text hidden">Customer Count</th>
+                            <th class="ar-text">MRR (دخل شهري متكرر)</th>
+                            <th class="en-text hidden">MRR</th>
+                            <th class="ar-text">ARR (دخل سنوي)</th>
+                            <th class="en-text hidden">ARR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">الشهر 1</td>
+                            <td class="en-text hidden">Month 1</td>
+                            <td>3-5</td>
+                            <td class="ar-text">$57-95</td>
+                            <td class="en-text hidden">$57-95</td>
+                            <td class="ar-text">$684-1,140</td>
+                            <td class="en-text hidden">$684-1,140</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 3</td>
+                            <td class="en-text hidden">Month 3</td>
+                            <td>12-18</td>
+                            <td class="ar-text">$228-342</td>
+                            <td class="en-text hidden">$228-342</td>
+                            <td class="ar-text">$2,736-4,104</td>
+                            <td class="en-text hidden">$2,736-4,104</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 6</td>
+                            <td class="en-text hidden">Month 6</td>
+                            <td>30-50</td>
+                            <td class="ar-text">$570-950</td>
+                            <td class="en-text hidden">$570-950</td>
+                            <td class="ar-text">$6,840-11,400</td>
+                            <td class="en-text hidden">$6,840-11,400</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 12</td>
+                            <td class="en-text hidden">Month 12</td>
+                            <td>80-120</td>
+                            <td class="ar-text">$1,520-2,280</td>
+                            <td class="en-text hidden">$1,520-2,280</td>
+                            <td class="ar-text">$18,240-27,360</td>
+                            <td class="en-text hidden">$18,240-27,360</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">السنة 2</td>
+                            <td class="en-text hidden">Year 2</td>
+                            <td>250-350</td>
+                            <td class="ar-text">$4,750-6,650</td>
+                            <td class="en-text hidden">$4,750-6,650</td>
+                            <td class="ar-text">$57,000-79,800</td>
+                            <td class="en-text hidden">$57,000-79,800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 7: Break-Even Analysis -->
+            <section>
+                <h2 class="section-title" data-num="07">
+                    <span class="ar-text">تحليل التعادل</span>
+                    <span class="en-text hidden">Break-Even Analysis</span>
+                </h2>
+
+                <div class="stat-box">
+                    <div class="stat">
+                        <div class="stat-label ar-text">التكاليف الشهرية الثابتة</div>
+                        <div class="stat-label en-text hidden">Fixed Monthly Costs</div>
+                        <div class="stat-value">$400</div>
+                        <p class="ar-text">خادم + قاعدة بيانات + أدوات</p>
+                        <p class="en-text hidden">Server + Database + Tools</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label ar-text">متى نصل للتعادل؟</div>
+                        <div class="stat-label en-text hidden">Break-Even Point</div>
+                        <div class="stat-value">الشهر 5-6</div>
+                        <p class="ar-text">مع 20-25 عميل</p>
+                        <p class="en-text hidden">With 20-25 customers</p>
+                    </div>
+                </div>
+
+                <div class="key-metric">
+                    <span class="ar-text">✓ بعد التعادل: كل عميل جديد = أرباح نقية</span>
+                    <span class="en-text hidden">✓ After break-even: Every new customer = pure profit</span>
+                </div>
+            </section>
+
+            <!-- Section 8: Unit Economics -->
+            <section>
+                <h2 class="section-title" data-num="08">
+                    <span class="ar-text">اقتصاديات الوحدة</span>
+                    <span class="en-text hidden">Unit Economics</span>
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">المقياس</th>
+                            <th class="en-text hidden">Metric</th>
+                            <th class="ar-text">القيمة</th>
+                            <th class="en-text hidden">Value</th>
+                            <th class="ar-text">الوصف</th>
+                            <th class="en-text hidden">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">متوسط سعر الخطة (ARPU)</td>
+                            <td class="en-text hidden">Average Revenue Per User</td>
+                            <td class="ar-text">$19</td>
+                            <td class="en-text hidden">$19</td>
+                            <td class="ar-text">متوسط بناءً على خليط الخطط</td>
+                            <td class="en-text hidden">Average based on plan mix</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">LTV (قيمة حياة العميل)</td>
+                            <td class="en-text hidden">Lifetime Value (LTV)</td>
+                            <td class="ar-text">$456</td>
+                            <td class="en-text hidden">$456</td>
+                            <td class="ar-text">$19 × 24 شهر (نموذج محافظ)</td>
+                            <td class="en-text hidden">$19 × 24 months (conservative model)</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">CAC (تكلفة اكتساب العميل)</td>
+                            <td class="en-text hidden">Customer Acquisition Cost</td>
+                            <td class="ar-text">$100</td>
+                            <td class="en-text hidden">$100</td>
+                            <td class="ar-text">تقدير محافظ للمرحلة الأولى</td>
+                            <td class="en-text hidden">Conservative estimate for phase 1</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">نسبة LTV:CAC</td>
+                            <td class="en-text hidden">LTV:CAC Ratio</td>
+                            <td class="ar-text">4.56:1</td>
+                            <td class="en-text hidden">4.56:1</td>
+                            <td class="ar-text">ممتازة (الهدف > 3:1)</td>
+                            <td class="en-text hidden">Excellent (Target > 3:1)</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">معدل الإبقاء الشهري</td>
+                            <td class="en-text hidden">Monthly Retention Rate</td>
+                            <td class="ar-text">95-98%</td>
+                            <td class="en-text hidden">95-98%</td>
+                            <td class="ar-text">معدل تناقص العملاء المتوقع</td>
+                            <td class="en-text hidden">Expected churn rate</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <strong class="ar-text">ماذا يعني هذا؟</strong>
+                    <strong class="en-text hidden">What Does This Mean?</strong>
+                    <p class="ar-text">
+                        كل عميل جديد يكسب FOTNO أكثر من 4 أضعاف ما ننفقه لاكتسابه. هذا يعني أن اقتصاديات 
+                        العمل صحيحة وقابلة للتوسع.
+                    </p>
+                    <p class="en-text hidden">
+                        Each new customer generates more than 4x what we spend to acquire them. This means the 
+                        business economics are sound and scalable.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 9: Operational Costs -->
+            <section>
+                <h2 class="section-title" data-num="09">
+                    <span class="ar-text">تكاليف التشغيل</span>
+                    <span class="en-text hidden">Operational Costs</span>
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">البند</th>
+                            <th class="en-text hidden">Item</th>
+                            <th class="ar-text">التكلفة الشهرية</th>
+                            <th class="en-text hidden">Monthly Cost</th>
+                            <th class="ar-text">ملاحظات</th>
+                            <th class="en-text hidden">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">خادم التطبيق (Hetzner)</td>
+                            <td class="en-text hidden">App Server (Hetzner)</td>
+                            <td class="ar-text">$50</td>
+                            <td class="en-text hidden">$50</td>
+                            <td class="ar-text">بدء بـ CX22، ترقية عند النمو</td>
+                            <td class="en-text hidden">Start with CX22, upgrade on growth</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">AWS S3 و CloudFront</td>
+                            <td class="en-text hidden">AWS S3 & CloudFront</td>
+                            <td class="ar-text">$150-200</td>
+                            <td class="en-text hidden">$150-200</td>
+                            <td class="ar-text">التخزين والتوزيع العالمي</td>
+                            <td class="en-text hidden">Storage & global distribution</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">قاعدة البيانات (RDS)</td>
+                            <td class="en-text hidden">Database (RDS)</td>
+                            <td class="ar-text">$40-60</td>
+                            <td class="en-text hidden">$40-60</td>
+                            <td class="ar-text">Postgres مدار</td>
+                            <td class="en-text hidden">Managed Postgres</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">البريد الإلكتروني (SendGrid/Resend)</td>
+                            <td class="en-text hidden">Email (SendGrid/Resend)</td>
+                            <td class="ar-text">$20-30</td>
+                            <td class="en-text hidden">$20-30</td>
+                            <td class="ar-text">رسائل إعلامية ومعاملات</td>
+                            <td class="en-text hidden">Notifications & transactions</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">Stripe و معالجة الدفع</td>
+                            <td class="en-text hidden">Stripe & Payment Processing</td>
+                            <td class="ar-text">~2.9%</td>
+                            <td class="en-text hidden">~2.9%</td>
+                            <td class="ar-text">من الإيرادات</td>
+                            <td class="en-text hidden">Of revenue</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">المراقبة والسجلات</td>
+                            <td class="en-text hidden">Monitoring & Logging</td>
+                            <td class="ar-text">$15-25</td>
+                            <td class="en-text hidden">$15-25</td>
+                            <td class="ar-text">Datadog، LogRocket</td>
+                            <td class="en-text hidden">Datadog, LogRocket</td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, rgba(114, 193, 206, 0.1) 0%, rgba(212, 165, 116, 0.08) 100%);">
+                            <td class="ar-text"><strong>المجموع</strong></td>
+                            <td class="en-text hidden"><strong>Total</strong></td>
+                            <td class="ar-text"><strong>$275-365</strong></td>
+                            <td class="en-text hidden"><strong>$275-365</strong></td>
+                            <td class="ar-text"><strong>قبل معالجة الدفع</strong></td>
+                            <td class="en-text hidden"><strong>Before payment processing</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-metric">
+                    <span class="ar-text">✓ منخفضة جدًا ومتوسع = هامش إجمالي ممتاز عند النمو</span>
+                    <span class="en-text hidden">✓ Very low and scalable = excellent gross margin on scale</span>
+                </div>
+            </section>
+
+            <!-- Section 10: Competitive Advantage -->
+            <section>
+                <h2 class="section-title" data-num="10">
+                    <span class="ar-text">المزايا التنافسية</span>
+                    <span class="en-text hidden">Competitive Advantages</span>
+                </h2>
+
+                <ul>
+                    <li class="ar-text"><strong>مركز على المصورين:</strong> FOTNO مبني للمصورين من قبل شخص يفهم آلامهم</li>
+                    <li class="en-text hidden"><strong>Photography-Focused:</strong> FOTNO is built for photographers by someone who understands their pain</li>
+                    <li class="ar-text"><strong>بسيط وعملي:</strong> لا تعقيد - فقط ما يحتاجه المصور</li>
+                    <li class="en-text hidden"><strong>Simple & Practical:</strong> No complexity - just what photographers need</li>
+                    <li class="ar-text"><strong>سعر عادل:</strong> يبدأ من $9 للمصورين الجدد، يصل ل $49 للاستوديوهات</li>
+                    <li class="en-text hidden"><strong>Fair Pricing:</strong> Starts at $9 for new photographers, goes to $49 for studios</li>
+                    <li class="ar-text"><strong>AI مدمج:</strong> تعليقات وذكاء صناعي في جميع الخطط</li>
+                    <li class="en-text hidden"><strong>Built-in AI:</strong> AI captions and intelligence in all plans</li>
+                    <li class="ar-text"><strong>تطبيق واحد:</strong> كل شيء مدمج - لا حاجة لأدوات متعددة</li>
+                    <li class="en-text hidden"><strong>All-in-One:</strong> Everything integrated - no need for multiple tools</li>
+                </ul>
+            </section>
+
+            <!-- Section 11: Growth Strategy -->
+            <section>
+                <h2 class="section-title" data-num="11">
+                    <span class="ar-text">استراتيجية النمو</span>
+                    <span class="en-text hidden">Growth Strategy</span>
+                </h2>
+
+                <div class="subtitle ar-text">المرحلة 1 (الأشهر 1-3): التحقق والوصول المباشر</div>
+                <div class="subtitle en-text hidden">Phase 1 (Months 1-3): Validation & Direct Outreach</div>
+                <p class="ar-text">التركيز على اكتساب العملاء الأولين والحصول على ردود الفعل. المصدر: البريد المباشر، Reddit، ProductHunt</p>
+                <p class="en-text hidden">Focus on getting first customers and feedback. Sources: Direct mail, Reddit, ProductHunt</p>
+
+                <div class="subtitle ar-text">المرحلة 2 (الأشهر 4-6): تحسين وتوسع</div>
+                <div class="subtitle en-text hidden">Phase 2 (Months 4-6): Optimization & Expansion</div>
+                <p class="ar-text">الحصول على شهادات من العملاء الأولين، تحسين المنتج بناءً على ردود الفعل، إضافة إعلانات مدفوعة قليلة</p>
+                <p class="en-text hidden">Get testimonials from first customers, improve product based on feedback, add some paid ads</p>
+
+                <div class="subtitle ar-text">المرحلة 3 (الأشهر 7-12): النمو والقياس</div>
+                <div class="subtitle en-text hidden">Phase 3 (Months 7-12): Scale & Growth</div>
+                <p class="ar-text">توسيع الإعلانات، شراكات مع محركات البحث، الخلام الشفهي القوي من العملاء</p>
+                <p class="en-text hidden">Scale ads, partnerships with search engines, strong word-of-mouth from customers</p>
+            </section>
+
+            <!-- Section 12: Company Valuation -->
+            <section>
+                <h2 class="section-title" data-num="12">
+                    <span class="ar-text">تقييم الشركة</span>
+                    <span class="en-text hidden">Company Valuation</span>
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">الوقت</th>
+                            <th class="en-text hidden">Timeline</th>
+                            <th class="ar-text">الحالة</th>
+                            <th class="en-text hidden">Status</th>
+                            <th class="ar-text">التقييم</th>
+                            <th class="en-text hidden">Valuation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">اليوم</td>
+                            <td class="en-text hidden">Today</td>
+                            <td class="ar-text">منتج جاهز، بلا مستخدمين</td>
+                            <td class="en-text hidden">Product ready, no users</td>
+                            <td class="ar-text">$50K-$100K</td>
+                            <td class="en-text hidden">$50K-$100K</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 3</td>
+                            <td class="en-text hidden">Month 3</td>
+                            <td class="ar-text">15+ عميل، $230 MRR</td>
+                            <td class="en-text hidden">15+ customers, $230 MRR</td>
+                            <td class="ar-text">$150K-$250K</td>
+                            <td class="en-text hidden">$150K-$250K</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 6</td>
+                            <td class="en-text hidden">Month 6</td>
+                            <td class="ar-text">40+ عميل، $750 MRR</td>
+                            <td class="en-text hidden">40+ customers, $750 MRR</td>
+                            <td class="ar-text">$400K-$600K</td>
+                            <td class="en-text hidden">$400K-$600K</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">الشهر 12</td>
+                            <td class="en-text hidden">Month 12</td>
+                            <td class="ar-text">100+ عميل، $1,900 MRR، مربح</td>
+                            <td class="en-text hidden">100+ customers, $1,900 MRR, profitable</td>
+                            <td class="ar-text">$900K-$1.5M</td>
+                            <td class="en-text hidden">$900K-$1.5M</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">السنة 2</td>
+                            <td class="en-text hidden">Year 2</td>
+                            <td class="ar-text">300+ عميل، $5,000+ MRR</td>
+                            <td class="en-text hidden">300+ customers, $5,000+ MRR</td>
+                            <td class="ar-text">$3M-$6M</td>
+                            <td class="en-text hidden">$3M-$6M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 13: Risk Analysis -->
+            <section>
+                <h2 class="section-title" data-num="13">
+                    <span class="ar-text">تحليل المخاطر</span>
+                    <span class="en-text hidden">Risk Analysis</span>
+                </h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">المخاطرة</th>
+                            <th class="en-text hidden">Risk</th>
+                            <th class="ar-text">الاحتمالية</th>
+                            <th class="en-text hidden">Probability</th>
+                            <th class="ar-text">التأثير</th>
+                            <th class="en-text hidden">Impact</th>
+                            <th class="ar-text">التخفيف</th>
+                            <th class="en-text hidden">Mitigation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">عدم العثور على توافق المنتج-السوق</td>
+                            <td class="en-text hidden">No Product-Market Fit</td>
+                            <td class="ar-text">منخفضة</td>
+                            <td class="en-text hidden">Low</td>
+                            <td class="ar-text">عالية</td>
+                            <td class="en-text hidden">High</td>
+                            <td class="ar-text">30-day validation sprint</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">المنافسة من اللاعبين الكبار</td>
+                            <td class="en-text hidden">Competition from big players</td>
+                            <td class="ar-text">منخفضة-متوسطة</td>
+                            <td class="en-text hidden">Low-Medium</td>
+                            <td class="ar-text">متوسطة</td>
+                            <td class="en-text hidden">Medium</td>
+                            <td class="ar-text">التركيز على المصورين أولاً</td>
+                            <td class="en-text hidden">Focus on photographers first</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">نمو العملاء أبطأ من المتوقع</td>
+                            <td class="en-text hidden">Slower customer growth</td>
+                            <td class="ar-text">متوسطة</td>
+                            <td class="en-text hidden">Medium</td>
+                            <td class="ar-text">متوسطة</td>
+                            <td class="en-text hidden">Medium</td>
+                            <td class="ar-text">18 شهر من الأموال + قابلية التوسع</td>
+                            <td class="en-text hidden">18 months of funds + scalability</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">مشاكل تقنية أو تعطل</td>
+                            <td class="en-text hidden">Technical issues or downtime</td>
+                            <td class="ar-text">منخفضة</td>
+                            <td class="en-text hidden">Low</td>
+                            <td class="ar-text">منخفضة-متوسطة</td>
+                            <td class="en-text hidden">Low-Medium</td>
+                            <td class="ar-text">Cloudflare + مراقبة قوية</td>
+                            <td class="en-text hidden">Cloudflare + strong monitoring</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 14: Investment Terms -->
+            <section>
+                <h2 class="section-title" data-num="14">
+                    <span class="ar-text">شروط الاستثمار</span>
+                    <span class="en-text hidden">Investment Terms</span>
+                </h2>
+
+                <div class="stat-box">
+                    <div class="stat">
+                        <div class="stat-label ar-text">مبلغ الاستثمار</div>
+                        <div class="stat-label en-text hidden">Investment Amount</div>
+                        <div class="stat-value">$5K-$10K</div>
+                        <p class="ar-text">تمويل العمليات لمدة 6 أشهر</p>
+                        <p class="en-text hidden">Operations funding for 6 months</p>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label ar-text">الحصة المالية</div>
+                        <div class="stat-label en-text hidden">Equity Stake</div>
+                        <div class="stat-value">10-15%</div>
+                                        </div>
+                </div>
+
+               
+            </section>
+
+            <!-- Section 15: Financial Summary & Exit Scenarios -->
+            <section>
+                <h2 class="section-title" data-num="15">
+                    <span class="ar-text">الملخص المالي والسيناريوهات المحتملة</span>
+                    <span class="en-text hidden">Financial Summary & Exit Scenarios</span>
+                </h2>
+
+                <p class="ar-text"><strong>استثمار $10K بحصة 12% يعني:</strong></p>
+                <p class="en-text hidden"><strong>$10K investment at 12% stake means:</strong></p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ar-text">السيناريو</th>
+                            <th class="en-text hidden">Scenario</th>
+                            <th class="ar-text">قيمة الحصة</th>
+                            <th class="en-text hidden">Stake Value</th>
+                            <th class="ar-text">العائد على الاستثمار</th>
+                            <th class="en-text hidden">Return Multiplier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ar-text">بعد 6 أشهر (40 عميل)</td>
+                            <td class="en-text hidden">After 6 months (40 customers)</td>
+                            <td class="ar-text">$48K-$72K</td>
+                            <td class="en-text hidden">$48K-$72K</td>
+                            <td class="ar-text">4.8-7.2x</td>
+                            <td class="en-text hidden">4.8-7.2x</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">بعد السنة الأولى (100+ عميل)</td>
+                            <td class="en-text hidden">After Year 1 (100+ customers)</td>
+                            <td class="ar-text">$108K-$180K</td>
+                            <td class="en-text hidden">$108K-$180K</td>
+                            <td class="ar-text">10.8-18x</td>
+                            <td class="en-text hidden">10.8-18x</td>
+                        </tr>
+                        <tr>
+                            <td class="ar-text">بعد سنتين (300+ عميل)</td>
+                            <td class="en-text hidden">After 2 years (300+ customers)</td>
+                            <td class="ar-text">$360K-$720K</td>
+                            <td class="en-text hidden">$360K-$720K</td>
+                            <td class="ar-text">36-72x</td>
+                            <td class="en-text hidden">36-72x</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-metric">
+                    <span class="ar-text">💡 المفتاح: الأرباح تبدأ في الشهر 5-6، بعدها كل شهر = نمو عميق في القيمة</span>
+                    <span class="en-text hidden">💡 Key: Profitability starts in Month 5-6, after which every month = deep growth in value</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="ar-text">دراسة جدوى FOTNO الشاملة | استثمار SaaS | بناءً على أرقام حقيقية من السوق والتوقعات المحافظة</p>
+            <p class="en-text hidden">FOTNO Comprehensive Feasibility Study | SaaS Investment | Based on real market numbers and conservative projections</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            const arElements = document.querySelectorAll('.ar-text');
+            const enElements = document.querySelectorAll('.en-text');
+            const langBtn = document.getElementById('langBtn');
+            const html = document.documentElement;
+
+            arElements.forEach(el => el.classList.toggle('hidden'));
+            enElements.forEach(el => el.classList.toggle('hidden'));
+
+            if (html.lang === 'ar') {
+                html.lang = 'en';
+                html.dir = 'ltr';
+                langBtn.textContent = 'العربية / English';
+            } else {
+                html.lang = 'ar';
+                html.dir = 'rtl';
+                langBtn.textContent = 'English / العربية';
+            }
+        }
+    </script>
+</body>
+</html>
